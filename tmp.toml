@@ -1,0 +1,21 @@
+[bg]
+name = "grass"
+src = "img/bg.png"
+h = 800
+w = 1000
+
+[[bildings]]
+name = "home1"
+src = "img/h1.png"
+h = 150
+w = 100
+x = 250
+y = 250
+
+[[bildings]]
+name = "home2"
+src = "img/h2.png"
+h = 100
+w = 200
+x = 500
+y = 500
