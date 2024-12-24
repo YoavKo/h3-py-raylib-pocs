@@ -26,7 +26,6 @@ def draw(data, textures):
 
     rl.begin_drawing()
 
-
     rl.clear_background(rl.WHITE)
     rl.draw_texture(bg_texture, 0, 0, rl.WHITE)
     rl.draw_texture(h1_texture, data.bildings[0].x, data.bildings[0].y, rl.WHITE)

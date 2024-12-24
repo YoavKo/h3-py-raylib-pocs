@@ -1,6 +1,8 @@
 from dataclasses import dataclass
+from dataclasses_json import dataclass_json
 import tomli
 
+@dataclass_json
 @dataclass
 class Building:
     name: str
@@ -10,23 +12,12 @@ class Building:
     x: int
     y: int
 
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            name=data['name'],
-            src=data['src'],
-            h=data['h'],
-            w=data['w'],
-            x=data['x'],
-            y=data['y'],
-        )
-    
     def is_in(self, x, y) -> bool:
         is_x_in = self.x < x < (self.x + self.w)
         is_y_in = self.y < y < (self.y + self.h)
         return is_x_in and is_y_in
 
-
+@dataclass_json
 @dataclass
 class Background:
     name: str
@@ -34,14 +25,6 @@ class Background:
     w: int
     h: int
     
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            name=data['name'],
-            src=data['src'],
-            w=data['w'],
-            h=data['h'],
-        )
 
 @dataclass
 class GameConfig:
