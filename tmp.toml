@@ -6,7 +6,7 @@ w = 1000
 
 [[bildings]]
 name = "home1"
-src = "img/h1.png"
+src = ["img/h1.png", "img/h1-lvl2.png"]
 h = 150
 w = 100
 x = 250
@@ -14,7 +14,7 @@ y = 250
 
 [[bildings]]
 name = "home2"
-src = "img/h2.png"
+src = ["img/h2.png", "img/h2-lvl2.png", "img/h2-lvl3.png"]
 h = 100
 w = 200
 x = 500

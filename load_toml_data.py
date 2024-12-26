@@ -6,7 +6,7 @@ import tomli
 @dataclass
 class Building:
     name: str
-    src: str
+    src: list[str]
     h: int
     w: int
     x: int
