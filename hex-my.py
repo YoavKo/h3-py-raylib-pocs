@@ -52,6 +52,34 @@ class HexGrid:
 
         self.hexs = [[HexCell(r, c, *self.get_hex_center(r, c)) for c in range(self.cols)] for r in range(self.rows)]
 
+    @staticmethod
+    def calculate_rect_size(radius: float, grid_type: GridType, rows: int, cols: int):
+        """
+        Calculate the minimum rectangle size needed to fit a hex grid with given parameters.
+        Returns calculated w,h
+        """
+        match grid_type:
+            case GridType.POINTY_TOP_EVEN_R | GridType.POINTY_TOP_ODD_R:
+                hex_height = 2
+                hex_width = math.sqrt(3)
+                vertical_spacing = 3/4 * hex_height
+                
+                if rows == 1:
+                    total_width = radius * hex_width * cols
+                else:
+                    total_width = radius * hex_width * (cols + 0.5)
+                total_height = radius * (hex_height + vertical_spacing * (rows - 1))
+                
+            case GridType.FLAT_TOP_EVEN_Q | GridType.FLAT_TOP_ODD_Q:
+                hex_width = 2
+                hex_height = math.sqrt(3)
+                horizontal_spacing = 3/4 * hex_width
+                
+                total_width = radius * (hex_width + horizontal_spacing * (cols - 1))
+                total_height = radius * hex_height * (rows + 0.5)
+        
+        return int(total_width), int(total_height)
+
 
     def _calculate_hex_radius_and_xy_offsets(self):
         target_height, target_width = self.dest_rect.size()
@@ -178,7 +206,8 @@ def main():
     SetTargetFPS(60)
     
     # Create grid in specific rectangle
-    grid_rect = PositionRect(50, 50, 800, 600)  # Left margin: 50px, Top margin: 50px
+    #grid_rect = PositionRect(50, 50, 800, 600)  # Left margin: 50px, Top margin: 50px
+    grid_rect = PositionRect(50, 50, *HexGrid.calculate_rect_size(40, GridType.POINTY_TOP_EVEN_R, 11, 15))  # Left margin: 50px, Top margin: 50px
     #grid = HexGrid(1, 2, grid_rect, GridType.FLAT_TOP_ODD_Q)  # Using POINTY_TOP_EVEN_R for H3-style
     grid = HexGrid(11, 15, grid_rect, GridType.POINTY_TOP_EVEN_R)  # Using POINTY_TOP_EVEN_R for H3-style
     
