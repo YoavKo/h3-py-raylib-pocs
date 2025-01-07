@@ -98,7 +98,7 @@ class HexGrid:
                 x_line_factor = 0.5 if (self.rows == 1 or row % 2 == 1) else 1
 
                 x = self.offset_x + self.radius * hex_width * (x_line_factor + col)
-                y = self.offset_y + self.radius * vertical_spacing * (1 + row)
+                y = self.offset_y + self.radius * (1 + vertical_spacing * row)
                 
             case GridType.FLAT_TOP_EVEN_Q | GridType.FLAT_TOP_ODD_Q | GridType.POINTY_TOP_ODD_R:
                 print(f'Error: support for {self.grid_type} is not implament yet.')
@@ -119,7 +119,7 @@ def main():
     
     # Create grid in specific rectangle
     grid_rect = PositionRect(50, 50, 800, 600)  # Left margin: 50px, Top margin: 50px
-    #grid = HexGrid(11, 1, grid_rect, GridType.POINTY_TOP_EVEN_R)  # Using POINTY_TOP_EVEN_R for H3-style
+    #grid = HexGrid(1, 3, grid_rect, GridType.POINTY_TOP_EVEN_R)  # Using POINTY_TOP_EVEN_R for H3-style
     grid = HexGrid(11, 15, grid_rect, GridType.POINTY_TOP_EVEN_R)  # Using POINTY_TOP_EVEN_R for H3-style
     
     while not WindowShouldClose():
